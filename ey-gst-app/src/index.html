@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>EY Chatbot Assistant</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="EY Chatbot powered by AI">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- Preload fonts for better performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles to avoid Flash of Unstyled Content (FOUC) -->
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background-color: green;
+    }
+    
+    .app-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #000000;
+    }
+    
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .typing-indicator span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #FFD700;
+      animation: typing 1.5s infinite ease-in-out;
+    }
+
+    .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typing {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+      40% { transform: translateY(-6px); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+  <app-root>
+    <!-- Typing Animation Loading Indicator -->
+    <div class="app-loading text-center">
+      <div class="typing-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <p class="mt-3 fw-semibold text-secondary">Loading EY Chatbot...</p>
+    </div>
+  </app-root>
+</body>
+</html>

@@ -1,1 +1,45 @@
 uploads
+
+# Node modules
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Angular build outputs
+dist/
+out-tsc/
+.tmp/
+
+# Environment files
+src/environments/environment*.ts
+
+# Logs & Debug Files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# Compiled TypeScript files
+*.js
+*.js.map
+*.d.ts
+
+# IDE / Editor Files
+.vscode/
+.idea/
+*.iml
+
+# Angular Cache & Temporary Files
+.angular/
+.angular/cache/
+coverage/
+
+# MacOS System Files
+.DS_Store
+
+# Windows System Files
+Thumbs.db
+ehthumbs.db
+

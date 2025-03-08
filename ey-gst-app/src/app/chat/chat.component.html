@@ -1,0 +1,76 @@
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: darkolivegreen
+  }
+  
+  .app-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #000000;
+  }
+  
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .typing-indicator span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FFD700; /* Fixed: Ensure visibility */
+    animation: typing 1.5s infinite ease-in-out;
+  }
+
+  .typing-indicator span:nth-child(1) { animation-delay: 0s; }
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typing {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.3; }
+    40% { transform: translateY(-6px); opacity: 1; }
+  }
+</style>
+
+<div class="chat-container d-flex flex-column vh-100 bg-light border shadow-sm">
+  <!-- Header -->
+  <header class="chat-header text-white p-3 d-flex justify-content-between align-items-center bg-dark">
+    <h1 class="h5 mb-0">GST Assistant</h1>
+    <button class="btn btn-outline-light btn-sm" (click)="clearChat()">Clear Chat</button>
+  </header>
+
+  <!-- Messages Section -->
+  <main class="messages-container flex-grow-1 p-3 overflow-auto" style="background: linear-gradient(to bottom,black, #333333 80%, #ffcc00 100%);" #messageContainer>
+    <div class="messages-list">
+      <!-- Empty State -->
+      <div class="empty-state text-center text-muted" *ngIf="messages.length === 0">
+        <div class="empty-icon fs-1">💬</div>
+        <p class="mt-2" style="color:white;">Start a conversation by typing a message below</p>
+      </div>
+
+      <!-- Chat Messages -->
+      <app-message *ngFor="let message of messages" [message]="message"></app-message>
+
+      <!-- Loading Indicator (Fixed: Now Visible) -->
+      <div *ngIf="isLoading" class=" text-center mt-3">
+        <div class="typing-indicator" role="status">
+          <span></span><span></span><span></span> <!-- Fixed: Added spans -->
+        </div>
+        <span class="visually-hidden">Typing...</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- Input Field -->
+  <div class="p-3 border-top bg-white">
+    <app-input-field (sendMessageEmitter)="onChatSendMessage($event,'')"></app-input-field>
+  </div>
+</div>
